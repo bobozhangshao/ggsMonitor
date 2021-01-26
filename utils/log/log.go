@@ -57,7 +57,6 @@ func init() {
 
 	// 设置日志级别
 	level := os.Getenv("LOG_LEVEL")
-	fmt.Println("=============================",level)
 	atomicLevel := zap.NewAtomicLevel()
 	atomicLevel.SetLevel(getLoggerLevel(level))
 

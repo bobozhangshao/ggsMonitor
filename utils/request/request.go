@@ -1,8 +1,6 @@
 package request
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -66,38 +64,4 @@ func (req *request) Send() (*response, error) {
 
 func (req *request) Err() error {
 	return req.err
-}
-
-// response http response wrapper
-type response struct {
-	body []byte
-}
-
-// String return response as string
-func (wrap *response) String() string {
-	return string(wrap.body)
-}
-
-// Byte return response as byte
-func (wrap *response) Byte() []byte {
-	return wrap.body
-}
-
-// BindJson bind json object with pointer
-func (wrap *response) BindJson(object interface{}) error {
-	return JsonToStruct(string(wrap.body), object)
-}
-
-// Reader
-func (wrap *response) Reader() io.Reader {
-	return bytes.NewReader(wrap.body)
-}
-
-func JsonToStruct(jsonStr string, obj interface{}) error {
-	err := json.Unmarshal([]byte(jsonStr), &obj)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	return nil
 }
