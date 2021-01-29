@@ -1,4 +1,4 @@
-package category
+package service
 
 // @查询所有分类和扩展详情
 // @Author Qap

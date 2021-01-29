@@ -1,4 +1,4 @@
-package product
+package service
 
 // @商品详情
 // @Author Qap

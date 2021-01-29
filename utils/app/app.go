@@ -1,9 +1,10 @@
 package app
 
 import (
-	"encoding/json"
 	"ggsMonitor/utils/log"
 )
+
+type H map[string]interface{}
 
 func Panic(err error) {
 	if err != nil {
@@ -17,12 +18,4 @@ func Error(msg string, err error) {
 		log.PanicF("%s:%v:", msg, err)
 	}
 	log.Println("Success:", msg)
-}
-
-func JsonToStruct(jsonStr string, obj interface{}) error {
-	err := json.Unmarshal([]byte(jsonStr), &obj)
-	if err != nil {
-		return err
-	}
-	return nil
 }

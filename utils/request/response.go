@@ -1,9 +1,7 @@
 package request
 
 import (
-	"bytes"
 	"ggsMonitor/utils/app"
-	"io"
 )
 
 // response http response wrapper
@@ -16,17 +14,7 @@ func (wrap *response) String() string {
 	return string(wrap.body)
 }
 
-// Byte return response as byte
-func (wrap *response) Byte() []byte {
-	return wrap.body
-}
-
 // BindJson bind json object with pointer
-func (wrap *response) BindJson(object interface{}) error {
-	return app.JsonToStruct(string(wrap.body), object)
-}
-
-// Reader
-func (wrap *response) Reader() io.Reader {
-	return bytes.NewReader(wrap.body)
+func (wrap *response) BindJson(object interface{}) {
+	app.JsonToStruct(string(wrap.body), object)
 }

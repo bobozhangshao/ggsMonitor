@@ -20,7 +20,6 @@ func NewRequest(method, url string, body io.Reader) *request {
 	if err != nil {
 		req.err = err
 	}
-
 	req.Request = request
 	return req
 }
@@ -40,6 +39,7 @@ func (req *request) Send() (*response, error) {
 	if req.err != nil {
 		return nil, req.err
 	}
+
 	client := http.Client{}
 	resp, err := client.Do(req.Request)
 	if err != nil {

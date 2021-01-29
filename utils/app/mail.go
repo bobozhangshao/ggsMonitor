@@ -7,12 +7,12 @@ import (
 	"strings"
 )
 
-func SendMail(mailTo string, subject string, body string) {
+func SendMail(subject string, body string) {
 	m := gomail.NewMessage()
 	//设置发件人
 	m.SetHeader("From", os.Getenv("EMAIL_USER"))
 	//设置发送给多个用户
-	mailArrTo := strings.Split(mailTo, ",")
+	mailArrTo := strings.Split(os.Getenv("EMAIL"), ",")
 	m.SetHeader("To", mailArrTo...)
 	//设置邮件主题
 	m.SetHeader("Subject", subject)
